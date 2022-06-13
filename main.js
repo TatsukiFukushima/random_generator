@@ -1,6 +1,5 @@
 let r = 0;
-let halfWidth = 0;
-let halfHeight = 0;
+let heightWithoutBar = 0;
 const allArc = 300;
 let lengthArc = allArc;
 let size = 0;
@@ -8,15 +7,16 @@ let barWeight = 0
 let rand = Math.floor(Math.random()*100);
 
 function setup() {
-  halfWidth = windowWidth*0.5;
-  halfHeight = windowHeight*0.5;
-  if (halfHeight > halfWidth) {
-      r = halfWidth*0.9;
+  if (windowHeight > windowWidth) {
+      barWeight = windowWidth*0.08;
+      heightWithoutBar = windowHeight - barWeight;
+      r = windowWidth*0.87;
   } else {
-      r = halfHeight*0.9;
+      barWeight = windowHeight*0.06;
+      heightWithoutBar = windowHeight - barWeight;
+      r = heightWithoutBar*0.87;
   }
-  size = r*0.8;
-  barWeight = r*0.18;
+  size = r*0.4;
 
   createCanvas(windowWidth, windowHeight);
 }
@@ -34,19 +34,19 @@ function draw() {
 
   // 中央の描画
   fill(100);
-  arc(halfWidth, halfHeight, r*2, r*2, (1.5 - 2*(lengthArc/allArc))*PI, 1.5*PI);
+  arc(windowWidth*0.5, heightWithoutBar*0.5, r, r, (1.5 - 2*(lengthArc/allArc))*PI, 1.5*PI);
   fill(30);
-  ellipse(halfWidth, halfHeight, r*1.7, r*1.7);
+  ellipse(windowWidth*0.5, heightWithoutBar*0.5, r*0.85, r*0.85);
   fill("#5ab966");
   textSize(size);
   textAlign(CENTER, CENTER);
-  text(rand, halfWidth, halfHeight);
+  text(rand, windowWidth*0.5, heightWithoutBar*0.5);
 
   // 下部の描画
   fill(100);
-  rect(0, windowHeight-barWeight, windowWidth, windowHeight);
+  rect(0, heightWithoutBar, windowWidth, windowHeight);
   fill("#5ab966");
-  rect(0, windowHeight-barWeight, windowWidth*(rand/100), windowHeight);
+  rect(0, heightWithoutBar, windowWidth*(rand/100), windowHeight);
 }
 
 function mouseClicked() {
