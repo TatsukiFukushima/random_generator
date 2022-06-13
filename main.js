@@ -5,6 +5,7 @@ let lengthArc = allArc;
 let size = 0;
 let barWeight = 0
 let rand = Math.floor(Math.random()*100);
+let lastTouched = 0;
 
 function setup() {
   if (windowHeight > windowWidth) {
@@ -49,8 +50,12 @@ function draw() {
   rect(0, heightWithoutBar, windowWidth*(rand/100), windowHeight);
 }
 
-function mouseClicked() {
-  reset();
+function touchStarted() {
+  // 普通のタップで touchStarted() はなぜか2回発火してしまうので、調整。
+  if (millis()-lastTouched > 300) {
+    lastTouched = millis();
+    reset();
+  }
 }
 
 // 乱数と周囲の輪をリセット
