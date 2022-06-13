@@ -53,6 +53,7 @@ function mouseClicked() {
   reset();
 }
 
+// 乱数と周囲の輪をリセット
 function reset() {
   lengthArc = allArc;
   rand = Math.floor(Math.random()*100);
