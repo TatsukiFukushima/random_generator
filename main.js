@@ -49,7 +49,6 @@ function draw() {
   ellipse(windowWidth*0.5, heightWithoutBar*0.5, r*0.85, r*0.85);
   fill("#5ab966");
   textSize(size);
-  textFont('Helvetica');
   textAlign(CENTER, CENTER);
   text(rand, windowWidth*0.5, heightWithoutBar*0.5);
 
